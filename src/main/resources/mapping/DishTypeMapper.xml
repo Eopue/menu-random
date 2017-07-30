@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.menu.random.dao.DishTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.menu.random.pojo.DishType" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="created_dt" property="createdDt" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="updated_dt" property="updatedDt" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="condition.name != null" >
+         and name = #{condition.name}
+      </if>
+      <if test="condition.createdBy != null" >
+         and created_by = #{condition.createdBy}
+      </if>
+      <if test="condition.createdDt != null" >
+         and created_dt = #{condition.createdDt}
+      </if>
+      <if test="condition.updatedBy != null" >
+         and updated_by = #{condition.updatedBy}
+      </if>
+      <if test="condition.updatedDt != null" >
+         and updated_dt = #{condition.updatedDt}
+      </if>
+      <if test="condition.version != null" >
+         and version = #{condition.version}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, created_by, created_dt, updated_by, updated_dt, version
+  </sql>
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.menu.random.pojo.Criteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dish_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dish_type
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dish_type
+    where id = #{id}
+  </delete>
+  <delete id="deleteByParams" parameterType="com.menu.random.pojo.Criteria" >
+    delete from dish_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.menu.random.pojo.DishType" >
+    insert into dish_type (id, name, created_by, created_dt, updated_by, updated_dt, version
+      )
+    values (#{id}, #{name}, #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.menu.random.pojo.DishType" >
+    insert into dish_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDt != null" >
+        created_dt,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="updatedDt != null" >
+        updated_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy},
+      </if>
+      <if test="createdDt != null" >
+        #{createdDt},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy},
+      </if>
+      <if test="updatedDt != null" >
+        #{updatedDt},
+      </if>
+      <if test="version != null" >
+        #{version},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByParams" parameterType="com.menu.random.pojo.Criteria" resultType="java.lang.Integer" >
+    select count(*) from dish_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByParamsSelective" parameterType="map" >
+    update dish_type
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name},
+      </if>
+      <if test="record.createdBy != null" >
+        created_by = #{record.createdBy},
+      </if>
+      <if test="record.createdDt != null" >
+        created_dt = #{record.createdDt},
+      </if>
+      <if test="record.updatedBy != null" >
+        updated_by = #{record.updatedBy},
+      </if>
+      <if test="record.updatedDt != null" >
+        updated_dt = #{record.updatedDt},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByParams" parameterType="map" >
+    update dish_type
+    set id = #{record.id},
+      name = #{record.name},
+      created_by = #{record.createdBy},
+      created_dt = #{record.createdDt},
+      updated_by = #{record.updatedBy},
+      updated_dt = #{record.updatedDt},
+      version = #{record.version}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.menu.random.pojo.DishType" >
+    update dish_type
+    <set >
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy},
+      </if>
+      <if test="createdDt != null" >
+        created_dt = #{createdDt},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy},
+      </if>
+      <if test="updatedDt != null" >
+        updated_dt = #{updatedDt},
+      </if>
+      <if test="version != null" >
+        version = #{version},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.menu.random.pojo.DishType" >
+    update dish_type
+    set name = #{name},
+      created_by = #{createdBy},
+      created_dt = #{createdDt},
+      updated_by = #{updatedBy},
+      updated_dt = #{updatedDt},
+      version = #{version}
+    where id = #{id}
+  </update>
+</mapper>
