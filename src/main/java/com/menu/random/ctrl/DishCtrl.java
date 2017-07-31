@@ -17,13 +17,13 @@ import java.util.List;
  * Created by liuxiaolu on 2017/7/28.
  */
 @Controller
+@ResponseBody
 @RequestMapping("/menu")
 public class DishCtrl {
 
     @Autowired
     private DishesService dishesService;
 
-    @ResponseBody
     @GetMapping("/index")
     public RestResult getTodayMenu(@RequestParam("num") int num){
         List<Dishes> today = dishesService.getMenu(num);
