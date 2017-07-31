@@ -6,6 +6,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
     <result column="restaurant_id" property="restaurantId" jdbcType="BIGINT" />
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
     <result column="created_dt" property="createdDt" jdbcType="TIMESTAMP" />
@@ -17,6 +18,9 @@
     <trim prefix="where" prefixOverrides="and|or" >
       <if test="condition.name != null" >
          and name = #{condition.name}
+      </if>
+      <if test="condition.price != null" >
+        and price = #{condition.price}
       </if>
       <if test="condition.type != null" >
          and type = #{condition.type}
@@ -42,7 +46,7 @@
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    d.id, d.name, d.type, d.restaurant_id, d.created_by, d.created_dt, d.updated_by, d.updated_dt, d.version
+    d.id, d.name, d.type, d.restaurant_id, d.price, d.created_by, d.created_dt, d.updated_by, d.updated_dt, d.version
   </sql>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.menu.random.pojo.Criteria" >
     select
@@ -79,9 +83,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.menu.random.pojo.Dishes" >
-    insert into dishes (id, name, type, restaurant_id, created_by, created_dt, updated_by, 
+    insert into dishes (id, name, price, type, restaurant_id, created_by, created_dt, updated_by,
       updated_dt, version)
-    values (#{id}, #{name}, #{type}, #{restaurantId}, #{createdBy}, #{createdDt}, #{updatedBy}, 
+    values (#{id}, #{name},  #{price}, #{type}, #{restaurantId}, #{createdBy}, #{createdDt}, #{updatedBy},
       #{updatedDt}, #{version})
   </insert>
   <insert id="insertSelective" parameterType="com.menu.random.pojo.Dishes" >
@@ -92,6 +96,9 @@
       </if>
       <if test="name != null" >
         name,
+      </if>
+      <if test="price != null" >
+        price,
       </if>
       <if test="type != null" >
         type,
@@ -121,6 +128,9 @@
       </if>
       <if test="name != null" >
         #{name},
+      </if>
+      <if test="price != null" >
+        #{price},
       </if>
       <if test="type != null" >
         #{type},
@@ -160,6 +170,9 @@
       <if test="record.name != null" >
         name = #{record.name},
       </if>
+      <if test="record.price != null" >
+        price = #{record.price},
+      </if>
       <if test="record.type != null" >
         type = #{record.type},
       </if>
@@ -191,6 +204,7 @@
     set id = #{record.id},
       name = #{record.name},
       type = #{record.type},
+      price = #{record.price},
       restaurant_id = #{record.restaurantId},
       created_by = #{record.createdBy},
       created_dt = #{record.createdDt},
@@ -206,6 +220,9 @@
     <set >
       <if test="name != null" >
         name = #{name},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price},
       </if>
       <if test="type != null" >
         type = #{type},
@@ -235,6 +252,7 @@
     update dishes
     set name = #{name},
       type = #{type},
+      price = #{record.price},
       restaurant_id = #{restaurantId},
       created_by = #{createdBy},
       created_dt = #{createdDt},

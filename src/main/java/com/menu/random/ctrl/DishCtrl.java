@@ -29,4 +29,10 @@ public class DishCtrl {
         List<Dishes> today = dishesService.getMenu(num);
         return new RestResult(today);
     }
+
+    @GetMapping("/specifyPrice")
+    public RestResult getTodayMenuOfSpecifyPrice(@RequestParam("price") int price){
+        List<List<Dishes>> today = dishesService.getMenuOfSpecifyPrice(price);
+        return new RestResult(today);
+    }
 }

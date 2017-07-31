@@ -10,6 +10,8 @@ public class Dishes implements Serializable {
 
     private String name;
 
+    private int price;
+
     private String type;
 
     private String typeName;
@@ -56,6 +58,14 @@ public class Dishes implements Serializable {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public Long getRestaurantId() {

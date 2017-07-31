@@ -3,6 +3,7 @@ package com.menu.random.service;
 import com.menu.random.pojo.Criteria;
 import com.menu.random.pojo.Dishes;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface DishesService {
@@ -29,4 +30,6 @@ public interface DishesService {
     int insertSelective(Dishes record);
 
     List<Dishes> getMenu(int num);
+
+    List<List<Dishes>> getMenuOfSpecifyPrice(int price);
 }
