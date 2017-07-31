@@ -1,6 +1,7 @@
 package com.menu.random.ctrl;
 
 
+import com.menu.random.pojo.Criteria;
 import com.menu.random.pojo.Dishes;
 import com.menu.random.pojo.RestResult;
 import com.menu.random.service.DishesService;
@@ -34,5 +35,15 @@ public class DishCtrl {
     public RestResult getTodayMenuOfSpecifyPrice(@RequestParam("price") int price){
         List<List<Dishes>> today = dishesService.getMenuOfSpecifyPrice(price);
         return new RestResult(today);
+    }
+
+    @GetMapping("/addDisabled")
+    public RestResult getTodayMenuOfSpecifyPrice(@RequestParam("name") String name){
+        Dishes dishes = new Dishes();
+        dishes.setStatus("disabled");
+        Criteria criteria = new Criteria();
+        criteria.put("name", name);
+        dishesService.updateByParamsSelective(dishes ,criteria);
+        return new RestResult();
     }
 }

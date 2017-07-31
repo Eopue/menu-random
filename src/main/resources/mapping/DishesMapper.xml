@@ -13,6 +13,7 @@
     <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
     <result column="updated_dt" property="updatedDt" jdbcType="TIMESTAMP" />
     <result column="version" property="version" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <trim prefix="where" prefixOverrides="and|or" >
@@ -43,10 +44,13 @@
       <if test="condition.version != null" >
          and version = #{condition.version}
       </if>
+      <if test="condition.status != null" >
+        and status = #{condition.status}
+      </if>
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    d.id, d.name, d.type, d.restaurant_id, d.price, d.created_by, d.created_dt, d.updated_by, d.updated_dt, d.version
+    d.id, d.name, d.type, d.restaurant_id, d.price, d.created_by, d.created_dt, d.updated_by, d.updated_dt, d.version, d.status
   </sql>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.menu.random.pojo.Criteria" >
     select
@@ -84,9 +88,9 @@
   </delete>
   <insert id="insert" parameterType="com.menu.random.pojo.Dishes" >
     insert into dishes (id, name, price, type, restaurant_id, created_by, created_dt, updated_by,
-      updated_dt, version)
+      updated_dt, version, status)
     values (#{id}, #{name},  #{price}, #{type}, #{restaurantId}, #{createdBy}, #{createdDt}, #{updatedBy},
-      #{updatedDt}, #{version})
+      #{updatedDt}, #{version}, #{status})
   </insert>
   <insert id="insertSelective" parameterType="com.menu.random.pojo.Dishes" >
     insert into dishes
@@ -121,6 +125,9 @@
       <if test="version != null" >
         version,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -152,6 +159,9 @@
       </if>
       <if test="version != null" >
         #{version},
+      </if>
+      <if test="status != null" >
+        #{status},
       </if>
     </trim>
   </insert>
@@ -194,6 +204,9 @@
       <if test="record.version != null" >
         version = #{record.version},
       </if>
+      <if test="record.status != null" >
+        status = #{record.status}
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -210,7 +223,8 @@
       created_dt = #{record.createdDt},
       updated_by = #{record.updatedBy},
       updated_dt = #{record.updatedDt},
-      version = #{record.version}
+      version = #{record.version},
+      status = #{record.status}
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -245,6 +259,10 @@
       <if test="version != null" >
         version = #{version},
       </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+
     </set>
     where id = #{id}
   </update>
@@ -258,7 +276,8 @@
       created_dt = #{createdDt},
       updated_by = #{updatedBy},
       updated_dt = #{updatedDt},
-      version = #{version}
+      version = #{version},
+      status = #{status}
     where id = #{id}
   </update>
 </mapper>

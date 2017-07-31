@@ -28,6 +28,8 @@ public class Dishes implements Serializable {
 
     private Long version;
 
+    private String status;
+
     public Long getId() {
         return id;
     }
@@ -114,5 +116,13 @@ public class Dishes implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

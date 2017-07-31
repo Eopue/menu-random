@@ -73,8 +73,10 @@ public class DishesServiceImpl implements DishesService {
     }
 
     public List<Dishes> getMenu(int num) {
+        Criteria criteria = new Criteria();
+        criteria.put("status", "normal");
         //列表
-        List<Dishes> allDishes = this.dishesMapper.selectByParams(new Criteria());
+        List<Dishes> allDishes = this.dishesMapper.selectByParams(criteria);
 
         //按类型分组
         Map<String, List<Dishes>> groupDishes = allDishes.stream().collect(Collectors.groupingBy(Dishes::getType));
@@ -89,8 +91,10 @@ public class DishesServiceImpl implements DishesService {
 
     @Override
     public List<List<Dishes>> getMenuOfSpecifyPrice(int price) {
+        Criteria criteria = new Criteria();
+        criteria.put("status", "normal");
         //列表
-        List<Dishes> allDishes = this.dishesMapper.selectByParams(new Criteria());
+        List<Dishes> allDishes = this.dishesMapper.selectByParams(criteria);
 
         this.getTodayOfSpecifyPrice(price, 0, allDishes);
 
