@@ -98,7 +98,7 @@ public class DishesServiceImpl implements DishesService {
         if(groupDishes.containsKey(type)){
             List<Dishes> list = groupDishes.get(type);
 
-            int getIndex = this.getIndex(list, today);
+            int getIndex = this.getIndex(list);
             if(getIndex != -1){
                 today.add(list.get(getIndex));
                 groupDishes.get(type).remove(getIndex);
@@ -109,7 +109,7 @@ public class DishesServiceImpl implements DishesService {
         return getToday(today,groupDishes, num - 1, index + 1);
     }
 
-    public int getIndex(List<Dishes> list, List<Dishes> today){
+    public int getIndex(List<Dishes> list){
         Random rondom = new Random();
         if(list.size() > 0){
             return rondom.nextInt(list.size());
