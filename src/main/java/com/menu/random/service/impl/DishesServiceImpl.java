@@ -86,7 +86,7 @@ public class DishesServiceImpl implements DishesService {
             return allDishes;
         }
 
-        return getToday(null, groupDishes, num, 1);
+        return getToday(null, groupDishes, num, 2);
     }
 
     @Override
