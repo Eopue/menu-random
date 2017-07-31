@@ -103,10 +103,7 @@ public class DishesServiceImpl implements DishesService {
 
     public void getTodayOfSpecifyPrice(int n, int base, List<Dishes> allDishes) {
         if (n == 0) {
-            List<Dishes> newList = new ArrayList<>();
-            for(Dishes dishes : list){
-                newList.add(dishes);
-            }
+            List<Dishes> newList = new ArrayList<>(list);
             lists.add(newList);
             return;
         }
