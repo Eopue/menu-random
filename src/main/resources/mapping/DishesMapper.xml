@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
     <result column="restaurant_id" property="restaurantId" jdbcType="BIGINT" />
     <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
     <result column="created_dt" property="createdDt" jdbcType="TIMESTAMP" />
@@ -41,15 +42,17 @@
     </trim>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, type, restaurant_id, created_by, created_dt, updated_by, updated_dt, version
+    d.id, d.name, d.type, d.restaurant_id, d.created_by, d.created_dt, d.updated_by, d.updated_dt, d.version
   </sql>
   <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.menu.random.pojo.Criteria" >
     select
     <if test="distinct" >
       distinct
     </if>
+    dt.name as type_name,
     <include refid="Base_Column_List" />
-    from dishes
+    from dishes d
+    LEFT JOIN dish_type dt ON dt.id = d.type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -58,9 +61,11 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
+    dt.name as type_name,
     <include refid="Base_Column_List" />
-    from dishes
+    from dishes d
+    LEFT JOIN dish_type dt ON dt.id = d.type
     where id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
