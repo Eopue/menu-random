@@ -134,8 +134,10 @@ public class DishesServiceImpl implements DishesService {
                 today.add(list.get(getIndex));
                 groupDishes.get(type).remove(getIndex);
             } else {
-                num++;
+                num ++;
             }
+        } else {
+           num ++;
         }
         return getToday(today, groupDishes, num - 1, index + 1);
     }
