@@ -13,7 +13,7 @@
     <spring.version>4.3.7.RELEASE</spring.version>
 
     <!--mysql版本号-->
-    <mysql-driver.version>5.1.41</mysql-driver.version>
+    <mysql-driver.version>5.1.30</mysql-driver.version>
 
     <!--mybatis版本号-->
     <mybatis.version>3.4.3</mybatis.version>
