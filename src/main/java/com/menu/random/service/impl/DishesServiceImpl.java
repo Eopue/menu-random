@@ -107,7 +107,7 @@ public class DishesServiceImpl implements DishesService {
             lists.add(newList);
             return;
         }
-        for (int i = base + 1; i <= n; i++) {
+        for (int i = base + 1; i <= n && i< allDishes.size(); i++) {
             list.add(allDishes.get(i));
             getTodayOfSpecifyPrice(n - allDishes.get(i).getPrice(), i, allDishes);
             list.remove(list.size() - 1);
