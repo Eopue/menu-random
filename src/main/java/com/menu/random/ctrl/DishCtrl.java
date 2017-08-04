@@ -39,6 +39,7 @@ public class DishCtrl {
         return new RestResult(all);
     }
 
+
     @GetMapping("/specifyPrice")
     public RestResult getTodayMenuOfSpecifyPrice(@RequestParam("price") int price){
         List<List<Dishes>> today = dishesService.getMenuOfSpecifyPrice(price);
